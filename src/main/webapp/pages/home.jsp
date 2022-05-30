@@ -12,5 +12,13 @@
 </head>
 <body>
 Hello, ${username}
+<form action="controller">
+    <input type="hidden" name="command" value="find_all_users">
+    <input type="submit" value="Find All Users">
+</form>
+<form action="controller">
+    <input type="hidden" name="command" value="logout">
+    <input type="submit" value="logout">
+</form>
 </body>
 </html>
