@@ -40,7 +40,7 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html");
         String strCommand = request.getParameter(ParameterName.COMMAND);
 //        Command command = CommandType.define(strCommand);
-        Command command = CommandType.define(strCommand);
+        Command command = CommandType.of(strCommand);
         Router router;
         try {
             router = command.execute(request);

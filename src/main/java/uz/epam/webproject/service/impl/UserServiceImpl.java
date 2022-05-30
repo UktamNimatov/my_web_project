@@ -43,7 +43,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() throws ServiceException {
-        return null;
+        UserDao<User> userDao = UserDaoImpl.getInstance();
+        try {
+            return userDao.findAll();
+        } catch (DaoException e) {
+            logger.error("error in getting users", e);
+            throw new ServiceException(e);
+        }
     }
 
     @Override
