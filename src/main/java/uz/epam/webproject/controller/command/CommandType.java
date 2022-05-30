@@ -1,14 +1,12 @@
 package uz.epam.webproject.controller.command;
 
-import uz.epam.webproject.controller.command.impl.DefaultCommand;
-import uz.epam.webproject.controller.command.impl.LoginCommand;
-import uz.epam.webproject.controller.command.impl.LogoutCommand;
-import uz.epam.webproject.controller.command.impl.RegistrationCommand;
+import uz.epam.webproject.controller.command.impl.*;
 
 public enum CommandType {
     LOGIN(new LoginCommand()),
     LOGOUT(new LogoutCommand()),
     REGISTRATION(new RegistrationCommand()),
+    FIND_ALL_USERS(new FindAllUsersCommand()),
     DEFAULT(new DefaultCommand());
 
 

@@ -1,4 +1,4 @@
-package uz.epam.webproject.entity.e_receipt;
+package uz.epam.webproject.entity.receipt;
 
 import uz.epam.webproject.entity.AbstractEntity;
 import uz.epam.webproject.entity.medicine.Medicine;
@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class Receipt extends AbstractEntity {
+public class Receipt implements AbstractEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;

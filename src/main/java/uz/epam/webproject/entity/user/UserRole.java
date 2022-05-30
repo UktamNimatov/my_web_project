@@ -1,18 +1,26 @@
 package uz.epam.webproject.entity.user;
 
 public enum UserRole {
-    GUEST("guest"),
-    CLIENT("client"),
-    PHARMACIST("pharmacist"),
-    DOCTOR("doctor");
+    GUEST(/*"guest"*/),
+    CLIENT(/*"client"*/),
+    PHARMACIST(/*"pharmacist"*/),
+    DOCTOR(/*"doctor"*/);
 
-    private final String roleName;
+    //enum has method ordinal()
 
-    UserRole(String roleName) {
-        this.roleName = roleName;
+
+    public String getRoleName(){
+        return this.name().toUpperCase();
+//       return this.toString().toUpperCase();
     }
 
-    public String getRoleName() {
-        return roleName;
-    }
+//    private final String roleName;
+//
+//    UserRole(String roleName) {
+//        this.roleName = roleName;
+//    }
+//
+//    public String getRoleName() {
+//        return roleName;
+//    }
 }

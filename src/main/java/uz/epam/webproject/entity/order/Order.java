@@ -3,11 +3,12 @@ package uz.epam.webproject.entity.order;
 import uz.epam.webproject.entity.AbstractEntity;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class Order extends AbstractEntity{
+public class Order implements AbstractEntity{
 
     @Serial
     private static final long serialVersionUID = 1L;

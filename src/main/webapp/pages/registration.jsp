@@ -11,6 +11,6 @@
     <title>Registration Page</title>
 </head>
 <body>
-
+Registration Page
 </body>
 </html>

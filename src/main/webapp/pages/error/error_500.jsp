@@ -11,6 +11,9 @@
     <title>500</title>
 </head>
 <body>
-
+500
+<br>
+${username}
+${error_message}
 </body>
 </html>

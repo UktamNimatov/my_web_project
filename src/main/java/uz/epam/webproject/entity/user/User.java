@@ -6,7 +6,7 @@ import java.io.Serial;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class User extends AbstractEntity{
+public class User implements AbstractEntity{
 
     @Serial
     private static final long serialVersionUID = 1L;

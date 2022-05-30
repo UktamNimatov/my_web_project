@@ -8,7 +8,7 @@ import uz.epam.webproject.controller.command.exception.CommandException;
 import uz.epam.webproject.service.UserService;
 import uz.epam.webproject.service.exception.ServiceException;
 import uz.epam.webproject.service.impl.UserServiceImpl;
-import uz.epam.webproject.util.ParameterName;
+import uz.epam.webproject.controller.command.ParameterName;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,23 +16,28 @@ import java.util.ResourceBundle;
 
 public class LoginCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(ParameterName.PAGES_PATH);
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(ParameterName.PAGES_PATH);
+    private static final String ERROR_MESSAGE = "Incorrect login or password";
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        UserService userService = UserServiceImpl.getInstance();
         String userName = request.getParameter(ParameterName.USERNAME);
-        String email = request.getParameter(ParameterName.EMAIL);
-        Router router;
+        String password = request.getParameter(ParameterName.PASSWORD);
         HttpSession session = request.getSession();
 
+        Router router;
+        String page;
+
+        UserService userService = UserServiceImpl.getInstance();
         try {
-            if(userService.authenticate(userName, email)){
+            if(userService.authenticate(userName, password)){
+                request.setAttribute(ParameterName.USERNAME, userName);
                 session.setAttribute(ParameterName.USERNAME, userName);
-                session.setAttribute(ParameterName.EMAIL, email);
-                router = new Router(resourceBundle.getString("home.page"));
+                session.setAttribute(ParameterName.EMAIL, password);
+                router = new Router(resourceBundle.getString(ParameterName.HOME_PAGE), Router.Type.FORWARD);
             }else {
-                router = new Router(resourceBundle.getString("index.page"));
+                request.setAttribute(ParameterName.ERROR_MESSAGE_SIGN_IN, ERROR_MESSAGE);
+                router = new Router(resourceBundle.getString(ParameterName.INDEX_PAGE), Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {
             logger.error("error in login", e);

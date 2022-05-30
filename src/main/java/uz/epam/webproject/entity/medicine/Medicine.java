@@ -6,13 +6,13 @@ import java.io.Serial;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class Medicine extends AbstractEntity{
+public class Medicine implements AbstractEntity{
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private String name;
+    private String title;
     private double price;
     private String description;
     private boolean withPrescription;
@@ -26,12 +26,12 @@ public class Medicine extends AbstractEntity{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public double getPrice() {
@@ -66,20 +66,20 @@ public class Medicine extends AbstractEntity{
         return id == medicine.id &&
                 Double.compare(medicine.price, price) == 0 &&
                 withPrescription == medicine.withPrescription &&
-                Objects.equals(name, medicine.name) &&
+                Objects.equals(title, medicine.title) &&
                 Objects.equals(description, medicine.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, description, withPrescription);
+        return Objects.hash(id, title, price, description, withPrescription);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Medicine.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("name='" + name + "'")
+                .add("title='" + title + "'")
                 .add("price=" + price)
                 .add("description='" + description + "'")
                 .add("withPrescription=" + withPrescription)

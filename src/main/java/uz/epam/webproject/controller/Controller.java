@@ -7,8 +7,9 @@ import uz.epam.webproject.controller.command.CommandType;
 import uz.epam.webproject.controller.command.Router;
 import uz.epam.webproject.controller.command.exception.CommandException;
 import uz.epam.webproject.pool.ConnectionPool;
-import uz.epam.webproject.util.ParameterName;
+import uz.epam.webproject.controller.command.ParameterName;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,23 +24,24 @@ public class Controller extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        processRequest(req, resp);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("text/html");
         String strCommand = request.getParameter(ParameterName.COMMAND);
+//        Command command = CommandType.define(strCommand);
         Command command = CommandType.define(strCommand);
-        Router router = null;
+        Router router;
         try {
             router = command.execute(request);
         } catch (CommandException e) {
@@ -49,7 +51,14 @@ public class Controller extends HttpServlet {
         String currentPage = router.getPage();
         HttpSession session = request.getSession();
         session.setAttribute(ParameterName.CURRENT_PAGE, currentPage);
-
+        if (router.getActionType() == Router.Type.FORWARD){
+//            request.getRequestDispatcher(router.getPage()).forward(request, response);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(currentPage);
+            dispatcher.forward(request, response);
+        }
+        else {
+            response.sendRedirect(currentPage);
+        }
     }
 
     @Override

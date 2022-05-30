@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
         boolean match;
         try {
             match = userDao.authenticate(login, email);
+            logger.info(match);
         } catch (DaoException e) {
             logger.error("error in authenticating the user", e);
             throw new ServiceException(e);
