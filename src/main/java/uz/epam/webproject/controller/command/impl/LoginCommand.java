@@ -25,6 +25,14 @@ public class LoginCommand implements Command {
         String password = request.getParameter(ParameterName.PASSWORD);
         HttpSession session = request.getSession();
 
+//        String attrLocale = (String) session.getAttribute(ParameterName.LOCALE);
+//        if (attrLocale == null){
+//            logger.info("attrLocale is null");
+//            System.out.println("attrLocale is null");
+//        }
+//        logger.info("attrLocale is not null");
+//        System.out.println("attrLocale is not null");
+
         Router router;
         String page;
 

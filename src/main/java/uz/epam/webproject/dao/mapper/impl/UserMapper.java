@@ -30,7 +30,7 @@ public class UserMapper implements EntityMapper<User> {
         } catch (SQLException sqlException) {
             logger.error("error in mapping resultSet into an object", sqlException);
 //        return Optional.empty(); //fixme!
-            throw new DaoException(sqlException); //fixme! бросить исключение или вернуть пустой Optional?
+            throw new DaoException(sqlException);
         }
     }
 }

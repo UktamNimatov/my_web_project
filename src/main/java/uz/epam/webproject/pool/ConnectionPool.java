@@ -2,6 +2,7 @@ package uz.epam.webproject.pool;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import uz.epam.webproject.entity.user.UserRole;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +38,8 @@ public enum ConnectionPool {
         try {
             properties.load(inputStream);
             Class.forName(properties.getProperty(DRIVER));
+//             Class.forName("com.mysql.cj.jdbc.Driver");
+//             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         } catch (IOException | ClassNotFoundException exception) {
 //            logger.fatal("error in loading driver class or class not found", exception);
             throw new ExceptionInInitializerError(exception);
